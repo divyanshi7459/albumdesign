@@ -2,5 +2,7 @@
   "name": "Album Design Studio",
   "description": "Professional AI-powered Indian wedding album design software with editable layer-based canvas, modular Indian wedding asset library, full-album generation, 300 DPI print export, and client proofing.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

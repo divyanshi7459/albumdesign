@@ -684,13 +684,14 @@ export class LayoutEngine {
     return layers;
   }
 
-  // Storybook Builder: Generates full wedding album (10, 20, 30 spreads)
+  // Storybook Builder: Generates full wedding album (5, 10, 20, 30, 40 spreads or custom)
   public static generateFullAlbum(params: {
-    spreadCount: 10 | 20 | 30;
+    spreadCount?: number;
     style: WeddingStyle;
     albumTitle?: string;
   }): AlbumSpread[] {
-    const { spreadCount, style } = params;
+    const spreadCount = params.spreadCount || 10;
+    const { style } = params;
 
     // Sequence of Indian wedding events
     const sequence10: WeddingEvent[] = [
@@ -762,9 +763,14 @@ export class LayoutEngine {
       "Final Page",
     ];
 
-    let events: WeddingEvent[] = sequence10;
-    if (spreadCount === 20) events = sequence20;
-    if (spreadCount === 30) events = sequence30;
+    let pool: WeddingEvent[] = sequence30;
+    if (spreadCount <= 10) pool = sequence10;
+    else if (spreadCount <= 20) pool = sequence20;
+
+    const events: WeddingEvent[] = [];
+    for (let i = 0; i < spreadCount; i++) {
+      events.push(pool[i % pool.length]);
+    }
 
     const spreads: AlbumSpread[] = [];
     const baseSeed = this.getNextSeed();

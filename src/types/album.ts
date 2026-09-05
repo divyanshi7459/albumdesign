@@ -280,3 +280,45 @@ export interface ReferenceAnalysisResult {
   typographyStyle: string;
   compositionAdvice: string;
 }
+
+export interface UserProfile {
+  id: string;
+  name: string;
+  email: string;
+  role: "photographer" | "designer" | "studio" | "lab";
+  companyName?: string;
+  avatarUrl?: string;
+  isDemo?: boolean;
+}
+
+export interface Project {
+  id: string;
+  name: string;
+  coupleNames: string;
+  weddingDate?: string;
+  style: WeddingStyle;
+  event: WeddingEvent;
+  dimensions: CanvasDimensions;
+  spreads: AlbumSpread[];
+  lastModified: number;
+  createdAt: number;
+  status: "draft" | "in-review" | "approved" | "completed";
+  clientEmail?: string;
+  thumbnail?: string;
+}
+
+export interface AlbumTemplate {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: "royal" | "traditional" | "modern" | "floral" | "regional" | "minimal";
+  style: WeddingStyle;
+  event: WeddingEvent;
+  spreadCount: number;
+  photoCountPerSpread: number;
+  tags: string[];
+  coverColor: string;
+  accentColor: string;
+  description: string;
+  featured?: boolean;
+}

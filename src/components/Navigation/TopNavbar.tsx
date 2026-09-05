@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { AlbumSpread } from "../../types/album";
 import {
   Download,
@@ -15,6 +16,8 @@ import {
   FileImage,
   Layers,
   CheckCircle2,
+  Home,
+  LayoutGrid,
 } from "lucide-react";
 
 interface TopNavbarProps {
@@ -30,6 +33,7 @@ interface TopNavbarProps {
   onOpenFlipbook: () => void;
   onOpenProofing: () => void;
   onOpenStorybook: () => void;
+  projectName?: string;
 }
 
 export const TopNavbar: React.FC<TopNavbarProps> = ({
@@ -45,6 +49,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
   onOpenFlipbook,
   onOpenProofing,
   onOpenStorybook,
+  projectName,
 }) => {
   const [showExportMenu, setShowExportMenu] = useState(false);
   const currentSpread = spreads[currentSpreadIndex];
@@ -53,6 +58,24 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
     <header className="h-14 bg-[#14161b] border-b border-white/10 px-4 flex items-center justify-between select-none z-30 text-zinc-200">
       {/* 1. BRAND & TITLE */}
       <div className="flex items-center gap-3">
+        {/* Navigation Quick Links */}
+        <div className="flex items-center gap-1.5 mr-1">
+          <Link
+            to="/"
+            className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
+            title="Return to Public Website"
+          >
+            <Home className="w-4 h-4" />
+          </Link>
+          <Link
+            to="/dashboard"
+            className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
+            title="Studio Projects Dashboard"
+          >
+            <LayoutGrid className="w-4 h-4" />
+          </Link>
+        </div>
+
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-md bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 flex items-center justify-center shadow-md shadow-amber-500/20">
             <Sparkles className="w-4 h-4 text-black fill-black" />
@@ -66,8 +89,8 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
                 Pro
               </span>
             </div>
-            <span className="text-[10px] text-zinc-400 font-sans leading-none block mt-0.5">
-              Indian Wedding Photo Album Generator
+            <span className="text-[10px] text-zinc-400 font-sans leading-none block mt-0.5 truncate max-w-[200px]">
+              {projectName || "Indian Wedding Photo Album Generator"}
             </span>
           </div>
         </div>
